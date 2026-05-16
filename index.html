@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Gomoku (Five in a Row)</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="app">
+    <!-- Menu View -->
+    <div id="menu-view" class="view active">
+      <div class="glass-panel menu-panel">
+        <h1>Gomoku</h1>
+        
+        <div class="setting-group">
+          <label>Game Mode</label>
+          <div class="toggle-group" id="mode-toggle">
+            <button class="toggle-btn active" data-value="pve">vs AI</button>
+            <button class="toggle-btn" data-value="pvp">vs Player</button>
+          </div>
+        </div>
+
+        <div class="setting-group" id="difficulty-setting">
+          <label>AI Difficulty</label>
+          <div class="toggle-group" id="difficulty-toggle">
+            <button class="toggle-btn" data-value="easy">Easy</button>
+            <button class="toggle-btn active" data-value="medium">Medium</button>
+            <button class="toggle-btn" data-value="hard">Hard</button>
+          </div>
+        </div>
+
+        <div class="setting-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="forbidden-toggle" checked>
+            <span class="custom-checkbox"></span>
+            Forbidden Moves (禁手)
+          </label>
+          <p class="hint-text">Black cannot play double 3, double 4, or overline (>5).</p>
+        </div>
+
+        <button id="start-btn" class="primary-btn">Start Game</button>
+      </div>
+    </div>
+
+    <!-- Game View -->
+    <div id="game-view" class="view">
+      <div class="header">
+        <button id="back-btn" class="icon-btn">
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        </button>
+        <div class="status-panel">
+          <div id="current-turn" class="turn-indicator black">
+            <div class="stone-icon"></div>
+            <span id="turn-text">Black's Turn</span>
+          </div>
+        </div>
+        <button id="restart-btn" class="icon-btn">
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2v6h-6"></path><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path></svg>
+        </button>
+      </div>
+
+      <div class="board-container">
+        <canvas id="board-canvas"></canvas>
+      </div>
+    </div>
+
+    <!-- Game Over Modal -->
+    <div id="game-over-modal" class="modal hidden">
+      <div class="glass-panel modal-content">
+        <h2 id="winner-text">Black Wins!</h2>
+        <div class="modal-buttons">
+          <button id="modal-restart-btn" class="primary-btn">Play Again</button>
+          <button id="modal-menu-btn" class="secondary-btn">Main Menu</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/game.js"></script>
+  <script src="js/ai.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
